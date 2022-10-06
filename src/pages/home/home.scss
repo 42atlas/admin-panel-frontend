@@ -1,6 +1,6 @@
 .home {
-  background-color: cadetblue;
-  .title {
-    color: white;
+  display: flex;
+  .homeContainer {
+    flex: 6;
   }
 }
