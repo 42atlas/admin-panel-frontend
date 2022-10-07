@@ -11,12 +11,18 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { Link } from 'react-router-dom'
+import { DarkModeContext } from '../../context/darkModeContext'
+import { useContext } from 'react'
 
 const Sidebar = () => {
+  const { dispatch } = useContext(DarkModeContext)
   return (
     <div className='sidebar'>
       <div className='top'>
-        <span className='logo'>archiviadmin</span>
+        <Link to='/' style={{ textDecoration: 'none' }}>
+          <span className='logo'>archiviadmin</span>
+        </Link>
       </div>
       <hr />
       <div className='center'>
@@ -27,14 +33,18 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className='title'>LISTE</p>
-          <li>
-            <PersonIcon className='icon' />
-            <span>Utenti</span>
-          </li>
-          <li>
-            <DiamondIcon className='icon' />
-            <span>Preziosi</span>
-          </li>
+          <Link to='/users' style={{ textDecoration: 'none' }}>
+            <li>
+              <PersonIcon className='icon' />
+              <span>Utenti</span>
+            </li>
+          </Link>
+          <Link to='/products' style={{ textDecoration: 'none' }}>
+            <li>
+              <DiamondIcon className='icon' />
+              <span>Preziosi</span>
+            </li>
+          </Link>
           <li>
             <ShoppingCartIcon className='icon' />
             <span>Ordini</span>
@@ -77,8 +87,14 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className='bottom'>
-        <div className='colorOption'></div>
-        <div className='colorOption'></div>
+        <div
+          className='colorOption'
+          onClick={() => dispatch({ type: 'LIGHT' })}
+        ></div>
+        <div
+          className='colorOption'
+          onClick={() => dispatch({ type: 'DARK' })}
+        ></div>
       </div>
     </div>
   )
